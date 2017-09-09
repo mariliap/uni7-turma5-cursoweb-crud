@@ -1,6 +1,103 @@
-<!DOCTYPEhtml><htmllang="pt-br"><head><metacharset="utf-8"><metaname="viewport"content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no"><title>Curso RWS</title><linkhref="css/bootstrap.css"rel="stylesheet"></head><body><divclass="container"><divclass="page-header"><h3>Cadastro de Usu·rios</h3></div><formclass="form"novalidate><inputtype="hidden"id="id"/><divclass="row"><divclass="col-xs-12 col-sm-12 col-md-12"><divid="global-message"class="alert text-center"role="alert"hidden></div></div></div>
-<divclass="row"><divclass="col-xs-12 col-sm-12 col-md-4"><divclass="form-group"><labelfor="cpf"class="control-label">CPF</label><inputtype="text"class="form-control"id="cpf"placeholder="99999999999"maxlength="11"title="CPF do usu·rio."/><spanid="cpf-message"class="text-danger"hidden></span></div></div><divclass="col-xs-12 col-sm-12 col-md-4"><divclass="form-group"><labelfor="nome"class="control-label">Nome</label><inputtype="text"class="form-control"id="nome"placeholder="Nome completo"maxlength="100"title="Nome deve ter no mÌnimo 3 caracteres"/><spanid="nome-message"class="text-danger"hidden></span></div></div>
-<divclass="col-xs-12 col-sm-6 col-md-4"><divclass="form-group"><labelfor="data"class="control-label">Data de nascimento</label><inputtype="text"class="form-control"id="data"placeholder="99/99/9999"maxlength="20"/><spanid="data-message"class="text-danger"hidden></span></div></div><divclass="col-xs-12 col-sm-6 col-md-4"><divclass="form-group"><labelfor="email"class="control-label">Email</label><inputtype="email"class="form-control"id="email"placeholder="nome@provedor.com"maxlength="255"/><spanid="email-message"class="text-danger"hidden></span></div></div>
-<divclass="col-xs-12 col-sm-6 col-md-4"><divclass="form-group"><labelfor="senha"class="control-label">Senha</label><inputtype="text"class="form-control"id="senha"maxlength="10"required/><spanid="senha-message"class="text-danger"hidden></span></div></div></div>
-<divclass="row"><divclass="col-xs-12 col-sm-4 col-md-2 col-sm-offset-4 col-md-offset-5"><aclass="btn btn-primary btn-block"href="usuarios-listar.html"><spanclass="glyphicon glyphicon-menu-left"></span>Voltar</a><buttonid="salvar"class="btn btn-success btn-block"type="button"><spanclass="glyphicon glyphicon-ok"></span> Salvar</button></div></div></form></div><scriptsrc="js/lib/jquery.js"></script><scriptsrc="js/lib/bootstrap.js"></script><scriptsrc="js/api/usuarios-proxy.js"></script><scriptsrc="js/ctrl/usuarios-editar.js"></script></body></html>
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Curso RWS</title>
+<link href="../css/bootstrap.css" rel="stylesheet">
+<link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
+</head>
+<body>
+<nav class="navbar navbar-default navbar-inverse" role="navigation">
+    <div class="container-fluid">
 
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed"
+                    data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" ng-href="#">Ve√≠culos</a>
+            <a class="navbar-brand" ng-click="irParaUsuario()" role="button">Usu√°rios</a>
+            
+        </div>
+     </div>
+</nav>
+<div class="container" style="position: relative; top: 0px;" >
+     		
+		
+		<div class="page-header">
+			<h3>Cadastro de Usu√°rios</h3>
+		</div>
+		<form class="form" novalidate>
+			<input type="hidden" id="id"></input>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-12">
+					<div id="global-message" class="alert text-center" role="alert" hidden></div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-12 col-md-4">
+					<div class="form-group">
+						<label for="cpf" class="control-label">CPF</label>
+						<input type="text" class="form-control" id="cpf" placeholder="99999999999" maxlength="11" title="CPF do usu√°rio."/>
+						<span id="cpf-message" class="text-danger" hidden></span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-12 col-md-4">
+					<div class="form-group">
+						<label for="nome" class="control-label">Nome</label>
+						<input type="text" class="form-control" id="nome" placeholder="Nome completo" maxlength="100" title="Nome deve ter no m√≠nimo 3 caracteres"/>
+						<span id="nome-message" class="text-danger"hidden></span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="form-group">
+						<label for="data" class="control-label">Data de nascimento</label>
+						<input type="text" class="form-control" id="data" placeholder="99/99/9999" maxlength="20"/>
+						<span id="data-message" class="text-danger" hidden></span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+					<div class="form-group">
+						<label for="email" class="control-label">Email</label>
+						<input type="email" class="form-control" id="email" placeholder="nome@provedor.com" maxlength="255"/>
+						<span id="email-message" class="text-danger" hidden></span>
+					</div>
+				</div>
+				<div class="col-xs-12 col-sm-6 col-md-4">
+				   	<div class="form-group">
+				   		<label for="senha" class="control-label">Senha</label>
+				   		<input type="text" class="form-control" id="senha" maxlength="10" required/>
+				   		<span id="senha-message" class="text-danger" hidden></span>
+				   	</div>
+				</div>
+			</div>
+			<div class="row">
+				<div class="col-xs-12 col-sm-4 col-md-2 col-sm-offset-4 col-md-offset-5">
+					<a class="btn btn-primary btn-block" href="usuarios.html">
+						<span class="glyphicon glyphicon-menu-left"></span>Voltar
+					</a>
+					<button id="salvar" class="btn btn-success btn-block" type="button">
+						<span class="glyphicon glyphicon-ok"></span> Salvar
+					</button>
+					<button id="excluir" class="btn btn-danger btn-block" type="button">
+						<span class="glyphicon glyphicon-remove"></span>Excluir
+					</button>
+				</div>
+			</div>
+		</form>
+
+		
+</div>
+
+<script src="../js/lib/jquery.js"></script>
+<script src="../js/lib/bootstrap.js"></script>		
+<script src="../js/api/usuarios-proxy.js"></script>
+<script src="../js/ctrl/usuarios-listar.js"></script>
+<script src="../js/ctrl/usuarios-editar.js"></script>
+
+</body>
+</html>

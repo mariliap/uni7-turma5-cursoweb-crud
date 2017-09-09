@@ -22,8 +22,11 @@ app.config(function($routeProvider) {
     }).when('/usuarios', {
         templateUrl : baseUrl + 'partials/usuarios.html',
         controller: 'AppCtrl'
+    }).when('/usuarios-editar', {
+        templateUrl : baseUrl + 'partials/usuarios-editar.html',
+        controller: 'AppCtrl'
     }).otherwise({
-        redirectTo : baseUrl + 'partials/veiculos.htm',
+        redirectTo : baseUrl + 'partials/teste.htm',
         controller: 'AppCtrl'
     });
 
@@ -38,6 +41,13 @@ app.controller(
     	//$scope.entries = [];
     	var getUrl = window.location;
     	$scope.baseUrl = getUrl.protocol + "//" + getUrl.host + getUrl.pathname;
+    	
+    	$scope.irParaUsuario = function() {
+			$location.path('/usuarios');
+		}
+    	$scope.irParaEdicaoUsuario = function() {
+			$location.path('/usuarios-editar');
+		}
     	
     	$scope.onItemClicked = function(item) {
 			$scope.selectedItem = item;

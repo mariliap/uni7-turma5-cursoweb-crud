@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="pt-br" ng-app="App">
 <head>
+<base href="{{baseUrl}}">
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>Curso RWS</title>
@@ -20,8 +21,9 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="#">Veículos</a>
-<!--             <a class="navbar-brand" href="#/usuarios">Usuários</a> -->
+            <a class="navbar-brand" ng-href="#">Veículos</a>
+<!--             <a class="navbar-brand" ng-click="irParaUsuario()" role="button">Usuários</a> -->
+			<a class="navbar-brand" href="{{baseUrl +'partials/usuarios.html'}}">Usuários</a>
             
         </div>
 
@@ -46,6 +48,11 @@
 <script src="js/bower_components/angular/angular.min.js"></script>
 <script src="js/bower_components/angular-route/angular-route.min.js"></script>
 <script src="js/bower_components/angular-resource/angular-resource.min.js"></script>
+
+<script src="js/api/usuarios-proxy.js"></script>
+<script src="js/ctrl/usuarios-listar.js"></script>
+<script src="js/ctrl/usuarios-editar.js"></script>
+
 <script src="js/veiculo-app.js"></script>
 
 </body>

@@ -27,7 +27,7 @@ public class VeiculoBC {
 	public void inicializar() {
 		Calendar dataEmplacamento = Calendar.getInstance();
 		Veiculo veiculo = new Veiculo();
-		veiculo.setNomeProprietario("José Rexona");
+		veiculo.setNomeProprietario("JosÃ© Rexona");
 		veiculo.setValorIPVA(new BigDecimal("1500"));
 		veiculo.setPlaca("AAA-9999");
 		dataEmplacamento.set(2015, 10, 11);
