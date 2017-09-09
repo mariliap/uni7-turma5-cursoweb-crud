@@ -3,6 +3,7 @@
 	if (id) {
 		UsuariosProxy.selecionar(id).done(obterOk).fail(tratarErro);
 	}
+	$("#cep").mask("?99999-999");
 	
 	$("#salvar").click(function(event) {
 		limparMensagensErro();
@@ -12,7 +13,8 @@
 						nome : $("#nome").val(),
 						data : $("#data").val(),
 						email : $("#email").val(),
-						senha : $("#senha").val()};
+						senha : $("#senha").val(),
+						cep : $("#cep").val()};
 		
 		if (usuario.id) {
 			UsuariosProxy.atualizar(usuario.id, usuario).done(atualizarOk).fail(tratarErro);
@@ -42,6 +44,7 @@
 		$("#data").val(data.data);
 		$("#email").val(data.email);
 		$("#senha").val(data.senha);
+		$("#cep").val(data.cep);
 	}
 	
 	function excluirOk(data, textStatus, jqXHR) {
@@ -66,8 +69,16 @@
 					var id = $(this).attr("id"); 
 					var message = null;
 					$.each(request.responseJSON, function(index, value) {
-						if (id == value.propriedade) { 
-							message = value.mensagem; 
+						var propriedade = value.propriedade.split('.');
+						var campo = propriedade[0];
+						var atributo = propriedade[1]==null? "" : propriedade[1]+": ";
+						if (id == campo) { 
+							if(message!=null){
+								message += ", ";
+							} else {
+								message = "";
+							}
+							message += atributo + " " + value.mensagem; 
 						}
 					});
 					

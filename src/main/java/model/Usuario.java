@@ -3,11 +3,13 @@ package model;
 import java.io.Serializable;
 import java.util.Date;
 
+import javax.validation.Valid;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Past;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;
 
+import rest.CepAdapter;
 import rest.DateAdapter;
 
 public class Usuario extends BaseModel implements Serializable {
@@ -34,6 +36,11 @@ public class Usuario extends BaseModel implements Serializable {
 	@Past
 	@XmlJavaTypeAdapter(DateAdapter.class)
 	private Date data;
+	
+	@NotNull
+	@Valid
+	@XmlJavaTypeAdapter(CepAdapter.class)
+	private Cep cep;
 	
 	public Usuario() {
 		super();
@@ -71,6 +78,12 @@ public class Usuario extends BaseModel implements Serializable {
 	}
 	public void setData(Date data) {
 		this.data = data;
+	}
+	public Cep getCep() {
+		return cep;
+	}
+	public void setCep(Cep cep) {
+		this.cep = cep;
 	}
 
 	

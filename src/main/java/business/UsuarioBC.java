@@ -1,6 +1,5 @@
 package business;
 
-import java.math.BigDecimal;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
@@ -13,8 +12,9 @@ import javax.validation.Validation;
 import javax.validation.Validator;
 
 import dao.Repositorio;
-import exception.ValidacaoException;
 import exception.UsuarioNaoEncontradoException;
+import exception.ValidacaoException;
+import model.Cep;
 import model.Usuario;
 
 @ApplicationScoped
@@ -28,22 +28,30 @@ public class UsuarioBC {
 		Calendar dataNascimento = Calendar.getInstance();
 		Usuario usuario = new Usuario();
 		usuario.setNome("José Rexona");
-		usuario.setCpf("123.345.678-90");
+		usuario.setCpf("12334567890");
 
 		usuario.setEmail("jose.rexona@gmail.com");
 		usuario.setSenha("12345");
 		dataNascimento.set(1950, 10, 11);
 		usuario.setData(dataNascimento.getTime());
+		Cep cepJose = new Cep();
+		cepJose.setRegiao("60000");
+		cepJose.setSufixo("100");
+		usuario.setCep(cepJose);
 		repositorio.inserir(usuario);
 		
 		usuario = new Usuario();
 		usuario.setNome("Maria Antonieta");
-		usuario.setCpf("000.300.600-90");
+		usuario.setCpf("00030060090");
 
 		usuario.setEmail("maria.antonieta@gmail.com");
-		usuario.setSenha("12345");
+		usuario.setSenha("123456");
 		dataNascimento.set(1950, 12, 25);
 		usuario.setData(dataNascimento.getTime());
+		Cep cepMaria = new Cep();
+		cepMaria.setRegiao("76856");
+		cepMaria.setSufixo("300");
+		usuario.setCep(cepMaria);
 		repositorio.inserir(usuario);
 	}
 

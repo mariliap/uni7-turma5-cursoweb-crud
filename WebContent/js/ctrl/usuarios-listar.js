@@ -19,12 +19,26 @@ function buscarOk(usuarios) {
 					.append($('<td>').append($('<a>').attr('href','usuarios-editar.html?id=' + usuario.id).text(usuario.cpf)),
 							$('<td>').text(usuario.nome),
 							$('<td>').text(usuario.email),
-							$('<td>').text(usuario.data)));
+							$('<td>').text(usuario.data),
+							$('<td>').text(usuario.cep)));
 			}
 		);
 	} else {
 			corpo.append($('<tr>')
 					.append($('<td>').attr('colspan', 4).text('Nenhum registro encontrado!')));
 	}
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 	
 }
