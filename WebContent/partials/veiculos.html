@@ -1,0 +1,108 @@
+<div class="col-xs-12">
+    <h1>
+        Bem vindo
+        <principal property="name" />
+        !
+    </h1>
+</div>
+
+<div class="col-xs-12" ng-class="{'col-xs-6': selectedItem || entry}">
+    <div class="panel panel-default">
+        <div class="panel-heading">Veículos
+        	<button type="button" class="btn btn-default fa fa-refresh" ng-click="buscar()">
+                <span class="glyphicon glyphicon-update"></span>
+            </button>
+        </div>
+        <div class="panel-body">
+            <div class="btn-group">
+                <button type="button" class="btn btn-default" ng-click="criar()">
+                    <span class="glyphicon glyphicon-plus"></span> Novo
+                </button>
+            </div>
+
+            <div class="btn-group pull-right">
+                <button type="button" class="btn btn-default"
+                        ng-disabled="!selectedItem" ng-click="editar()"
+                        has-permission="'address:edit'">
+                    <span class="glyphicon glyphicon-pencil"></span> Editar
+                </button>
+                <button type="button" class="btn btn-default" ng-click="remover()"
+                        ng-disabled="!selectedItem" has-permission="'address:delete'">
+                    <span class="glyphicon glyphicon-trash"></span> Remover
+                </button>
+            </div>
+        </div>
+        <div class="list-group">
+            <a ng-href class="list-group-item"
+               ng-repeat="entry in entries | orderBy : 'id'"
+               ng-click="onItemClicked(entry)"
+               ng-class="{'active': $seEstaAtivo(entry)}"
+               role="button">
+                <h4 class="list-group-item-heading">
+                    <span ng-bind="entry.id + '. Placa: ' + entry.placa"></span>
+                </h4>
+                <p class="list-group-item-text" ng-show="selectedItem"
+                   ng-bind="'Nome do Proprietário: ' + entry.nomeProprietario">
+                </p>
+            </a>
+        </div>
+
+    </div>
+</div>
+
+
+<div class="col-xs-6">
+    <div class="panel panel-default"  ng-show="entry || selectedItem">
+    	<div class="panel-heading" >{{entry? "Edição": "Detalhes"}}
+        </div>
+        <div class="panel-body">
+
+            <form name="entryForm" class="form-horizontal" role="form" novalidate
+                  ng-submit="salvarOuAtualizar()">
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Placa</label>
+                    <div class="col-sm-9" >
+                        <p class="form-control-static" ng-bind="selectedItem.placa"
+                           ng-show="!entry"></p>
+                        <input name="placa" ng-model="entry.placa" type="text"
+                               class="form-control" placeholder="Número da placa" ng-show="entry"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Nome do Proprietário</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" ng-bind="selectedItem.nomeProprietario"
+                           ng-show="!entry"></p>
+                        <input name="nomeProprietario" ng-model="entry.nomeProprietario" type="text"
+                               class="form-control" placeholder="Nome do Propietário" ng-show="entry"
+                               required>
+                    </div>
+                </div>
+                <div class="form-group" ng-class="{'has-error' : errauthc}">
+                    <label class="col-sm-3 control-label">Data do Emplacamento</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" ng-bind="selectedItem.dataEmplacamento"
+                           ng-show="!entry"></p>
+                        <input name="dataEmplacamento" ng-model="entry.dataEmplacamento" type="text"
+                               class="form-control" placeholder="Data do Emplacamento" ng-show="entry"
+                               required>
+                        <span class="glyphicon glyphicon-remove form-control-feedback" ng-show="errauthc"></span>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label class="col-sm-3 control-label">Valor do IPVA</label>
+                    <div class="col-sm-9">
+                        <p class="form-control-static" ng-bind="selectedItem.valorIPVA"
+                           ng-show="!entry"></p>
+                        <input name="valorIPVA" ng-model="entry.valorIPVA" type="text"
+                               class="form-control" placeholder="Valor do IPVA" ng-show="entry" required>
+                    </div>
+                </div>
+                <button type="submit" class="col-sm-offset-3 btn btn-default"
+                        ng-show="entry"
+                        ng-disabled="entryForm.$pristine || entryForm.$invalid">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
